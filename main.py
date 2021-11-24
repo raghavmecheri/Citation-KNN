@@ -1,11 +1,10 @@
-import sys,os
+import sys, os
 from sklearn.utils import shuffle
 import random as rand
 from cross_validation import cross_validation
 sys.path.append(os.path.realpath('..\data'))
 from data import load_data
 
-#Import Algorithms 
 from CitationKNN import CitationKNN
 from KNN import KNN
 
@@ -13,13 +12,12 @@ from KNN import KNN
 print('Started')
 
 #Load Data 
-#bags,labels,_ = load_data('musk1_scaled')
-#bags,labels,_ = load_data('musk2_scaled')
-bags,labels,_ = load_data('data_gauss')
-
+bags, labels, _ = load_data('data_gauss')
+# Bags: list of 2x2 matrices, each representing a bag
+# labels: list of 1x1 matrices, each representing a label per bag
 
 #Shuffle Data
-bags,labels = shuffle(bags, labels, random_state=rand.randint(0, 100))
+bags, labels = shuffle(bags, labels, random_state=rand.randint(0, 100))
 
 #Number of Folds 
 folds=4

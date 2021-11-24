@@ -1,15 +1,16 @@
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score
 import numpy as np
 import sys
 import timeit
 
 def cross_validation(bags, labels, model_1, model_2, folds, parameters_1 = {}, parameters_2 = {}):  
-    skf = StratifiedKFold(labels.reshape(len(labels)), n_folds = folds)
+    y = labels.reshape(len(labels))
+    skf = StratifiedKFold(n_splits = folds)
     results_accuracy_model_1 = []
     results_accuracy_model_2 = []
     fold = 0
-    for train_index, test_index in skf:
+    for train_index, test_index in skf.split(bags, y):
         X_train = [bags[i] for i in train_index]
         Y_train = labels[train_index]
         X_test  = [bags[i] for i in test_index]

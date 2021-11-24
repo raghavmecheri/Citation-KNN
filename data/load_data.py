@@ -16,12 +16,12 @@ def load_data(data):
     bag_g = loadmat(f_bag)
     labels = loadmat(f_labels)
     
-	try: 
+    try: 
         Bag = bag_g['Bag2']
     except KeyError: 
         Bag = bag_g['Bag']
     
-	labels = labels['bagI']
+    labels = labels['bagI']
     X = X_g['X']
     Bag = np.squeeze(Bag - 1)
     nrobags = max(Bag+1)
@@ -32,4 +32,4 @@ def load_data(data):
         bag = X[index]
         bags.append(bag)
     
-	return bags,labels,X
+    return bags,labels,X
